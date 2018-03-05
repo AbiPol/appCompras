@@ -1,0 +1,150 @@
+<div class="row">
+  <div class=" col col-md"></div>
+  <div class=" col-10 col-md-8">
+    <h2>Editar presupuesto</h2>
+    <a class="btn btn-primary float-md-right" routerLink="/presupuesto">
+        Regresar Listado
+    </a>
+    <form [formGroup]="presupuestoForm" (ngSubmit)="envioDatos()">
+      <div class="form-group">
+        <label for="proveedor">Proveedor</label>
+        <i class="fa fa-check-circle check"
+            *ngIf="presupuestoForm.get('proveedor').valid"></i>
+        <i class="fa fa-exclamation-circle uncheck"
+              *ngIf="presupuestoForm.get('proveedor').invalid &&
+                     presupuestoForm.get('proveedor').touched"></i>
+        <input type="text"
+               class="form-control"
+               name="proveedor"
+               id="proveedor"
+               formControlName="proveedor"
+               [(ngModel)]="presupuesto.proveedor">
+          <p class="alert alert-danger"
+             *ngIf="presupuestoForm.get('proveedor').invalid &&
+                    presupuestoForm.get('proveedor').touched">
+            El campo Proveedor es obligatorio.
+          </p>
+      </div>
+      <div class="form-group">
+        <label for="fecha">Fecha</label>
+        <i class="fa fa-check-circle check"
+            *ngIf="presupuestoForm.get('fecha').valid"></i>
+        <i class="fa fa-exclamation-circle uncheck"
+          *ngIf="presupuestoForm.get('fecha').invalid &&
+                  presupuestoForm.get('fecha').touched"></i>
+        <input type="date"
+               class="form-control"
+               name="fecha"
+               id="fecha"
+               formControlName="fecha"
+               [(ngModel)]="presupuesto.fecha">
+               <p class="alert alert-danger"
+                  *ngIf="presupuestoForm.get('fecha').invalid &&
+                         presupuestoForm.get('fecha').touched">
+                    El campo fecha es obligatorio
+               </p>
+      </div>
+      <div class="form-group">
+        <label for="concepto">Concepto</label>
+        <i class="fa fa-check-circle check"
+            *ngIf="presupuestoForm.get('concepto').valid"></i>
+        <i class="fa fa-exclamation-circle uncheck"
+          *ngIf="presupuestoForm.get('concepto').invalid &&
+                 presupuestoForm.get('concepto').touched"></i>
+        <input type="text"
+               class="form-control"
+               name="concepto"
+               id="concepto"
+               formControlName="concepto"
+               [(ngModel)]="presupuesto.concepto">
+        <p class="alert alert-danger"
+           *ngIf="presupuestoForm.get('concepto').invalid &&
+                  presupuestoForm.get('concepto').touched">
+          El campo Concepto es obligatorio
+        </p>
+      </div>
+      <div class="form-group">
+          <label for="base">Base Imponible</label>
+          <i class="fa fa-check-circle check"
+            *ngIf="presupuestoForm.get('base').valid"></i>
+          <i class="fa fa-exclamation-circle uncheck"
+             *ngIf="presupuestoForm.get('base').invalid &&
+                    presupuestoForm.get('base').touched"></i>
+          <input type="number"
+                 class="form-control"
+                 name="base"
+                 id="base"
+                 formControlName="base"
+                 [(ngModel)]="presupuesto.base">
+          <p class="alert alert-danger"
+            *ngIf="presupuestoForm.get('base').invalid &&
+                   presupuestoForm.get('base').touched">
+            El campo Base es obligatorio
+           </p>
+        </div>
+        <div class="form-group">
+            <label for="tipo">Tipo IVA</label>
+            <i class="fa fa-check-circle check"
+              *ngIf="presupuestoForm.get('tipo').valid"></i>
+            <i class="fa fa-exclamation-circle uncheck"
+              *ngIf="presupuestoForm.get('tipo').invalid &&
+                     presupuestoForm.get('tipo').touched"></i>
+            <select name="tipo"
+                    id="tipo"
+                    formControlName="tipo"
+                    [(ngModel)]="presupuesto.tipo">
+              <option value="">Seleccione ...</option>
+              <option value=0> 0%</option>
+              <option value=0.04> 4%</option>
+              <option value=0.10> 10%</option>
+              <option value=0.21> 21%</option>
+            </select>
+            <p class="alert alert-danger"
+              *ngIf="presupuestoForm.get('tipo').invalid &&
+                     presupuestoForm.get('tipo').touched">
+                  El campo tipo IVA es obligatorio
+            </p>
+          </div>
+          <div class="form-group">
+            <label for="iva">Importe IVA</label>
+            <input type="number"
+                    class="form-control"
+                    name="iva"
+                    id="iva"
+                    formControlName="iva"
+                    [(ngModel)]="presupuestoForm.value.iva"
+                    disabled>
+          </div>
+          <div class="form-group">
+            <label for="total">Total Presupuesto</label>
+            <input type="number"
+                    class="form-control"
+                    name="total"
+                    id="total"
+                    formControlName="total"
+                    [(ngModel)]="presupuestoForm.value.total"
+                    disabled>
+          </div>
+          <button type="submit"
+                  class="btn btn-primary"
+                  [disabled]="!presupuestoForm.valid">
+                Guardar cambios
+          </button>
+          <a class="btn btn-danger" routerLink="/presupuesto">Cancelar</a>
+          <p class="alert alert-danger" *ngIf="!presupuestoForm.valid">
+              Debe introducir todos los campos del formulario
+          </p>
+    </form>
+    <!--
+    <pre>
+      Valor del formulario: {{ presupuestoForm.value | json }}
+    </pre>
+    <pre>
+        Estado del formulario: {{ presupuestoForm.status | json }}
+      </pre>
+    <pre>
+      Valor Objeto al enviar datos: {{ presupuesto | json }}
+    </pre> -->
+  </div>
+  <div class=" col col-md"></div>
+</div>
