@@ -36,7 +36,11 @@ export class AutenticacionService {
    */
   usuarioConectado() {
     const usuarioConectado = firebase.auth().currentUser;
-    return usuarioConectado;
+    if (usuarioConectado) {
+      return true;
+      } else {
+      return false;
+      }
   }
 /*Metodo que nos desconecta de la BD*/
   logout() {

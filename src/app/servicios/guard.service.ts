@@ -5,13 +5,16 @@ import { AutenticacionService } from './autenticacion.service';
 @Injectable()
 export class GuardService implements CanActivate {
 
-  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot){
-    return this.autenticacionService.usuarioConectado();
-    throw new Error("Method not implemented.");
-  }
-  /**
-   * Nos devuleve si el usuario esta conectado
-   */
   constructor(private autenticacionService: AutenticacionService) { }
+
+  /**
+   *Metodo que nos dice si una ruta se puede activar o no. Se puede activar si el usuario esta conectado
+   * y no se puede si el usuario no lo esta.
+   * @param route
+   * @param state
+   */
+  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
+    return this.autenticacionService.usuarioConectado();
+  }
 
 }
